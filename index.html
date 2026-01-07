@@ -18,19 +18,20 @@
   background-attachment: fixed;
 }
    
-    .layout {
+.layout {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr;
   grid-template-rows: auto auto 1fr auto;
   grid-template-areas:
     "calendar clock slideshow"
     "calendar weather slideshow"
-    "calendar slideshow"
+    "calendar slideshow slideshow"
     "tasks tasks tasks";
-  gap: 30px;
+  gap: 16px;
   height: 100vh;
   padding: 50px;
   box-sizing: border-box;
+}
     
 .clock    { grid-area: clock; }
 .weather  { grid-area: weather; }
@@ -310,6 +311,7 @@ function showSlides() {
 
 </body>
 </html>
+
 
 
 
