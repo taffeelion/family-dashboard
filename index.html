@@ -80,11 +80,6 @@
   text-align: center;
 }
 
-.weather-city {
-  font-size: 18px;
-  opacity: 0.8;
-}
-
 .weather-temp {
   font-size: 42px;
   font-weight: 600;
@@ -95,7 +90,13 @@
   font-size: 16px;
   text-transform: capitalize;
 }
-
+    
+#weather-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 6px;
+}
+    
 .mySlides {
   display: none;
   max-width: 700px;       /* Spans the full width of the container */
@@ -280,7 +281,13 @@ function showSlides() {
   }
 
   updateWeather();
+  const iconEl = document.getElementById("weather-icon");
+  const iconCode = data.current.weather[0].icon;
+iconEl.src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+iconEl.style.display = "block";
+
   setInterval(updateWeather, 10 * 60 * 1000);
+  
 </script>
   
 <script>
@@ -302,6 +309,7 @@ function showSlides() {
 
 </body>
 </html>
+
 
 
 
