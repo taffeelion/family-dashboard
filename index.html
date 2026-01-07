@@ -181,10 +181,16 @@
 
     if (!tempEl || !descEl) return;
 
+    const url =
+      `https://api.openweathermap.org/data/3.0/onecall` +
+      `?lat=${LAT}` +
+      `&lon=${LON}` +
+      `&units=imperial` +
+      `&exclude=minutely,hourly,daily,alerts` +
+      `&appid=${WEATHER_API_KEY}`;
+
     try {
-      const res = await fetch(
-        `https://api.openweathermap.org/data/3.0/onecall?lat=${LAT}&lon=${LON}&units=imperial&exclude=minutely,hourly,daily,alerts&appid=${WEATHER_API_KEY}`
-      );
+      const res = await fetch(url);
 
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
@@ -194,15 +200,16 @@
       descEl.textContent = data.current.weather[0].description;
 
     } catch (err) {
-      tempEl.textContent = "Weather error";
-      descEl.textContent = err.message;
-      console.error(err);
+      tempEl.textContent = "Weather unavailable";
+      descEl.textContent = "";
+      console.error("Weather fetch failed:", err);
     }
   }
 
   updateWeather();
   setInterval(updateWeather, 10 * 60 * 1000);
 </script>
+
 
 
   
@@ -225,6 +232,7 @@
 
 </body>
 </html>
+
 
 
 
