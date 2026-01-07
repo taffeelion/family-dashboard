@@ -21,7 +21,7 @@
     .layout {
   display: grid;
   grid-template-columns: 300px 400px 1fr;
-  grid-template-rows: 90px auto 400px;
+  grid-template-rows: 90px auto 500px;
   grid-template-areas:
     "clock weather calendar"
     "slideshow slideshow calendar"
@@ -100,7 +100,7 @@
 .mySlides {
   display: none;
   max-width: 700px;       /* Spans the full width of the container */
-  max-height: 500px;     /* Set this to your preferred height */
+  max-height: 400px;     /* Set this to your preferred height */
   object-fit: cover; /* IMPORTANT: This crops the photo to fill the box without stretching */
   vertical-align: top; 
 }
@@ -110,7 +110,7 @@
   position: relative;
   display: flex;
   margin: auto;
-  height: 500px;    /* Match the height of your images to hold the space */
+  height: 400px;    /* Match the height of your images to hold the space */
   overflow: hidden;
 }
 
@@ -187,7 +187,7 @@
   <!-- Calendar -->
   <div class="box calendar">
     <iframe
-      src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FNew_York&showPrint=0&showTz=0&mode=WEEK&showTabs=0&showTitle=0&src=NTIzaG9sbG93YXlAZ21haWwuY29t&src=ZmFtaWx5MDY1NDMwMTY1OTMyNTM4Nzc1MzlAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=dXN0Nzdpbm1obnYxOThiOWNzdDJscm9pZG9AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%237986cb&color=%239e69af&color=%237cb342"
+      src="https://calendar.google.com/calendar/embed?height=550&wkst=1&ctz=America%2FNew_York&showPrint=0&showTz=0&mode=WEEK&showTabs=0&showTitle=0&src=NTIzaG9sbG93YXlAZ21haWwuY29t&src=ZmFtaWx5MDY1NDMwMTY1OTMyNTM4Nzc1MzlAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=dXN0Nzdpbm1obnYxOThiOWNzdDJscm9pZG9AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%237986cb&color=%239e69af&color=%237cb342"
       frameborder="0"
       scrolling="no">
     </iframe>
@@ -302,6 +302,7 @@ function showSlides() {
 
 </body>
 </html>
+
 
 
 
