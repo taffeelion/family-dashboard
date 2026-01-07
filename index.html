@@ -23,8 +23,8 @@
   grid-template-areas:
     "clock calendar"
     "weather calendar"
-    "photo calendar"
-    "photo calendar"
+    "slideshow calendar"
+    "slideshow calendar"
     "tasks tasks";
   gap: 30px;
   height: 100vh;
@@ -33,7 +33,7 @@
 
 .clock    { grid-area: clock; }
 .weather  { grid-area: weather; }
-.photo    { grid-area: photo; }
+.slideshow    { grid-area: slideshow; }
 .calendar { grid-area: calendar; }
 .tasks    { grid-area: tasks; }
  
@@ -91,7 +91,30 @@
   text-transform: capitalize;
 }
 
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
 
+/* Hide images by default */
+.mySlides {
+  display: none;
+  width: 100%;
+  border-radius: 10px; /* Optional: rounds the corners */
+}
+
+/* Optional: Add a fade animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+    
 .tasks {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -132,13 +155,19 @@
 </div>
 
 
-  <!-- Photo -->
-  <div class="box photo photos">
-    <iframe
-      src="https://photos.app.goo.gl/cq3CfpiqWztJJFXz5"
-      allowfullscreen>
-    </iframe>
-  </div>
+  <!-- Slideshow -->
+ <div class="box slideshow-container">
+  <img class="mySlides" src="images/photo1.jpg">
+  <img class="mySlides" src="images/photo2.jpg">
+  <img class="mySlides" src="images/photo3.jpg">
+   <img class="mySlides" src="images/photo4.jpg">
+   <img class="mySlides" src="images/photo5.jpg">
+   <img class="mySlides" src="images/photo6.jpg">
+   <img class="mySlides" src="images/photo7.jpg">
+   <img class="mySlides" src="images/photo8.jpg">
+   <img class="mySlides" src="images/photo9.jpg">
+   <img class="mySlides" src="images/photo10.jpg">
+</div>
 
   <!-- Calendar -->
   <div class="box calendar">
@@ -170,6 +199,32 @@
 
 </div>
 
+<script>
+let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  
+  // Hide all slides
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  
+  slideIndex++;
+  
+  // Reset to first slide if at the end
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  
+  // Display the current slide
+  slides[slideIndex-1].style.display = "block";  
+  
+  // Change image every 3000ms (3 seconds)
+  setTimeout(showSlides, 3000); 
+}
+</script>
+  
 <script>
   const WEATHER_API_KEY = "f89bdc52c182de9a4d86401079c5a9f0";
   const LAT = 35.9940;
@@ -209,9 +264,6 @@
   updateWeather();
   setInterval(updateWeather, 10 * 60 * 1000);
 </script>
-
-
-
   
 <script>
   function updateClock() {
@@ -232,6 +284,7 @@
 
 </body>
 </html>
+
 
 
 
