@@ -170,24 +170,7 @@
 
 </div>
 
-<script>
-  function updateClock() {
-    const now = new Date();
-    const clockEl = document.getElementById("clock");
-
-    if (!clockEl) return;
-
-    clockEl.textContent = now.toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit"
-    });
-  }
-
-  updateClock();
-  setInterval(updateClock, 1000);
-</script>
-
-<script>
+  <script>
   const WEATHER_API_KEY = "PASTE_YOUR_OPENWEATHERMAP_KEY";
 
   const LAT = 35.9940;
@@ -223,8 +206,26 @@
   updateWeather();
   setInterval(updateWeather, 10 * 60 * 1000);
 </script>
+  
+<script>
+  function updateClock() {
+    const now = new Date();
+    const clockEl = document.getElementById("clock");
+
+    if (!clockEl) return;
+
+    clockEl.textContent = now.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit"
+    });
+  }
+
+  updateClock();
+  setInterval(updateClock, 1000);
+</script>
 
 </body>
 </html>
+
 
 
