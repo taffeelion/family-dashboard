@@ -22,7 +22,7 @@
   grid-template-rows: 90px auto 400px;
   grid-template-areas:
     "clock weather calendar"
-    "slideshow slideshow calendar"
+    "slideshow calendar"
     "tasks tasks tasks";
   gap: 30px;
   height: 100vh;
@@ -60,10 +60,13 @@
   font-size: 56px;
   font-weight: 600;
   color: black;
-  text-align: left;
-}
-.clock iframe {
-  opacity: 0.0;
+  flex: 1;
+  text-align: center;
+  background: transparent; /* Changed from rgba or hex colors */
+  padding: 15px;
+  border-radius: 12px;
+  /* If you have a border you want to keep, leave it; otherwise, remove it too */
+  border: none; 
 }
     
 .weather {
@@ -294,6 +297,7 @@ function showSlides() {
 
 </body>
 </html>
+
 
 
 
