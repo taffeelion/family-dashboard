@@ -251,44 +251,37 @@ function showSlides() {
 
   async function updateWeather() {
     const tempEl = document.getElementById("weather-temp");
-    const descEl = document.getElementById("weather-desc");
+    const iconEl = document.getElementById("weather-icon");
 
-    if (!tempEl || !descEl) return;
-
-    const url =
-      `https://api.openweathermap.org/data/3.0/onecall` +
-      `?lat=${LAT}` +
-      `&lon=${LON}` +
-      `&units=imperial` +
-      `&exclude=minutely,hourly,daily,alerts` +
-      `&appid=${WEATHER_API_KEY}`;
+    if (!tempEl || !iconEl) return;
 
     try {
-      const res = await fetch(url);
+      const res = await fetch(
+        `https://api.openweathermap.org/data/3.0/onecall?lat=${LAT}&lon=${LON}&units=imperial&exclude=minutely,hourly,daily,alerts&appid=${WEATHER_API_KEY}`
+      );
 
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
       const data = await res.json();
 
+      // 👉 THIS IS "SETTING THE TEMPERATURE"
       tempEl.textContent = Math.round(data.current.temp) + "°";
-      descEl.textContent = data.current.weather[0].description;
+
+      // 👉 THIS SETS THE ICON
+      const iconCode = data.current.weather[0].icon;
+      iconEl.src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
 
     } catch (err) {
-      tempEl.textContent = "Weather unavailable";
-      descEl.textContent = "";
-      console.error("Weather fetch failed:", err);
+      tempEl.textContent = "—";
+      console.error("Weather error:", err);
     }
   }
 
   updateWeather();
-  const iconEl = document.getElementById("weather-icon");
-  const iconCode = data.current.weather[0].icon;
-iconEl.src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
-iconEl.style.display = "block";
-
   setInterval(updateWeather, 10 * 60 * 1000);
-  
 </script>
+
+
   
 <script>
   function updateClock() {
@@ -309,6 +302,7 @@ iconEl.style.display = "block";
 
 </body>
 </html>
+
 
 
 
