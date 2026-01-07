@@ -91,6 +91,12 @@
   text-transform: capitalize;
 }
     
+.weather-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+    
 #weather-icon {
   width: 48px;
   height: 48px;
@@ -163,12 +169,11 @@
 
   <!-- Weather -->
   <div class="box weather glass">
+    <div class="weather-row">
   <img id="weather-icon" alt="Weather icon" />
   <div class="weather-temp" id="weather-temp"></div>
-  <div class="weather-desc" id="weather-desc"></div>
     
 </div>
-
 
   <!-- Slideshow -->
  <div class="box slideshow-container">
@@ -302,6 +307,7 @@ function showSlides() {
 
 </body>
 </html>
+
 
 
 
