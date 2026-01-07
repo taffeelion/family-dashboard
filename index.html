@@ -170,8 +170,8 @@
 
 </div>
 
-  <script>
-  const WEATHER_API_KEY = "PASTE_YOUR_OPENWEATHERMAP_KEY";
+<script>
+  const WEATHER_API_KEY = "f89bdc52c182de9a4d86401079c5a9f0";
 
   const LAT = 35.9940;
   const LON = -78.8986;
@@ -184,9 +184,14 @@
 
     try {
       const res = await fetch(
-        `https://api.openweathermap.org/data/3.0/onecall?lat=${LAT}&lon=${LON}&units=imperial&exclude=minutely,hourly,daily,alerts&appid=${WEATHER_API_KEY}`
+        `https://api.openweathermap.org/data/3.0/onecall?lat=${LAT}&lon=${LON}&units=imperial&exclude=minutely,hourly,daily,alerts`,
+        {
+          headers: {
+            "X-OpenWeather-API-Key": WEATHER_API_KEY
+          }
+        }
       );
-      
+
       if (!res.ok) {
         throw new Error(`HTTP ${res.status}`);
       }
@@ -206,6 +211,7 @@
   updateWeather();
   setInterval(updateWeather, 10 * 60 * 1000);
 </script>
+
   
 <script>
   function updateClock() {
@@ -226,6 +232,7 @@
 
 </body>
 </html>
+
 
 
 
