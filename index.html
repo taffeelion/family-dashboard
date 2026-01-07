@@ -95,13 +95,17 @@
   max-width: 1000px;
   position: relative;
   margin: auto;
+  overflow: hidden; /* Keeps everything tidy */
+  background-color: #f0f0f0; /* Optional: placeholder color while loading */
 }
 
 /* Hide images by default */
 .mySlides {
-  display: none;
-  width: 100%;
-  border-radius: 10px; /* Optional: rounds the corners */
+   display: none;
+  width: 100%;       /* Spans the full width of the container */
+  height: 400px;     /* FORCED HEIGHT - change this value to fit your layout */
+  object-fit: cover; /* This crops the image to fill the box without stretching */
+  border-radius: 10px;
 }
 
 /* Optional: Add a fade animation */
@@ -114,6 +118,10 @@
   from {opacity: .4} 
   to {opacity: 1}
 }
+
+.calendar iframe {
+  opacity: 0.7;
+}
     
 .tasks {
   display: grid;
@@ -125,10 +133,6 @@
   text-align: center;
   margin: 0 0 10px;
   font-size: 22px;
-}
-
-.calendar iframe {
-  opacity: 0.7;
 }
 
 .tasks iframe {
@@ -220,8 +224,8 @@ function showSlides() {
   // Display the current slide
   slides[slideIndex-1].style.display = "block";  
   
-  // Change image every 3000ms (3 seconds)
-  setTimeout(showSlides, 3000); 
+  // Change image every 300000ms (300 seconds)
+  setTimeout(showSlides, 300000); 
 }
 </script>
   
@@ -284,6 +288,7 @@ function showSlides() {
 
 </body>
 </html>
+
 
 
 
