@@ -25,14 +25,13 @@
   grid-template-areas:
     "calendar clock slideshow"
     "calendar weather slideshow"
-    "calendar calendar slideshow"
+    "calendar slideshow"
     "tasks tasks tasks";
   gap: 30px;
   height: 100vh;
   padding: 50px;
   box-sizing: border-box;
-}
-
+    
 .clock    { grid-area: clock; }
 .weather  { grid-area: weather; }
 .slideshow{ grid-area: slideshow; }
@@ -52,6 +51,7 @@
   padding: 16px;
   backdrop-filter: blur(6px);
   box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  overflow: hidden;
 }
 
 .clock {
@@ -145,6 +145,8 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 25px;
+  overflow-y: auto;
+  max-height: 100%;
 }
 
 .tasks h2 {
@@ -309,6 +311,7 @@ function showSlides() {
 
 </body>
 </html>
+
 
 
 
