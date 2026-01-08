@@ -279,62 +279,55 @@ function showSlides() {
   const LAT = 35.9940;
   const LON = -78.8986;
 
-  async function updateWeather() {
-    const tempEl = document.getElementById("weather-temp");
-    const iconEl = document.getElementById("weather-icon");
+   document.addEventListener("DOMContentLoaded", () => {
 
-    if (!tempEl || !iconEl) return;
+    async function updateWeather() {
+      const tempEl = document.getElementById("weather-temp");
+      const iconEl = document.getElementById("weather-icon");
+      const day1El = document.getElementById("day1");
+      const day2El = document.getElementById("day2");
 
-    try {
-     const res = await fetch(
-  `https://api.openweathermap.org/data/3.0/onecall?lat=${LAT}&lon=${LON}&units=imperial&exclude=minutely,hourly,alerts&appid=${WEATHER_API_KEY}`
-);
+      if (!tempEl || !iconEl || !day1El || !day2El) return;
 
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      try {
+        const res = await fetch(
+          `https://api.openweathermap.org/data/3.0/onecall?lat=${LAT}&lon=${LON}&units=imperial&exclude=minutely,hourly,alerts&appid=${WEATHER_API_KEY}`
+        );
 
-      const data = await res.json();
-      console.log(data.daily);
+        const data = await res.json();
 
+        // Current weather
+        tempEl.textContent = Math.round(data.current.temp) + "°";
+        iconEl.src = `https://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png`;
 
-      // 👉 THIS IS "SETTING THE TEMPERATURE"
-      tempEl.textContent = Math.round(data.current.temp) + "°";
+        // Forecast
+        const formatDay = (unix) =>
+          new Date(unix * 1000).toLocaleDateString([], { weekday: "short" });
 
-      // 👉 THIS SETS THE ICON
-      const iconCode = data.current.weather[0].icon;
-      iconEl.src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+        const day1 = data.daily[1];
+        const day2 = data.daily[2];
 
-    } catch (err) {
-      tempEl.textContent = "—";
-      console.error("Weather error:", err);
+        day1El.innerHTML = `
+          <div>${formatDay(day1.dt)}</div>
+          <img src="https://openweathermap.org/img/wn/${day1.weather[0].icon}@2x.png">
+          <div>${Math.round(day1.temp.day)}°</div>
+        `;
+
+        day2El.innerHTML = `
+          <div>${formatDay(day2.dt)}</div>
+          <img src="https://openweathermap.org/img/wn/${day2.weather[0].icon}@2x.png">
+          <div>${Math.round(day2.temp.day)}°</div>
+        `;
+
+      } catch (err) {
+        console.error("Weather error:", err);
+      }
     }
-  }
 
-  updateWeather();
-  setInterval(updateWeather, 10 * 60 * 1000);
-  
-  // --- NEXT 2 DAYS ---
-const day1 = data.daily[1];
-const day2 = data.daily[2];
-
-function formatDay(unix) {
-  return new Date(unix * 1000).toLocaleDateString([], { weekday: "short" });
-}
-
-document.getElementById("day1").innerHTML = `
-  <div>${formatDay(day1.dt)}</div>
-  <img src="https://openweathermap.org/img/wn/${day1.weather[0].icon}@2x.png">
-  <div>${Math.round(day1.temp.day)}°</div>
-`;
-
-document.getElementById("day2").innerHTML = `
-  <div>${formatDay(day2.dt)}</div>
-  <img src="https://openweathermap.org/img/wn/${day2.weather[0].icon}@2x.png">
-  <div>${Math.round(day2.temp.day)}°</div>
-`;
-
+    updateWeather();
+    setInterval(updateWeather, 10 * 60 * 1000);
+  });
 </script>
-
-
   
 <script>
   function updateClock() {
@@ -355,6 +348,7 @@ document.getElementById("day2").innerHTML = `
 
 </body>
 </html>
+
 
 
 
