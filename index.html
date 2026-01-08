@@ -290,6 +290,8 @@ function showSlides() {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
       const data = await res.json();
+      console.log(data.daily);
+
 
       // 👉 THIS IS "SETTING THE TEMPERATURE"
       tempEl.textContent = Math.round(data.current.temp) + "°";
@@ -350,6 +352,7 @@ document.getElementById("day2").innerHTML = `
 
 </body>
 </html>
+
 
 
 
