@@ -37,7 +37,7 @@
 .calendar { grid-area: calendar; }
 .tasks    { grid-area: tasks; }
 
-      .iframe {
+      iframe {
       max-width: 100%;
       max-height: 100%;
       border: none;
@@ -162,7 +162,16 @@
 <body>
   
 <div class="layout">
-
+  
+  <!-- Calendar -->
+  <div class="box calendar">
+    <iframe
+      src="https://calendar.google.com/calendar/embed?height=550&wkst=1&ctz=America%2FNew_York&showPrint=0&showTz=0&mode=WEEK&showTabs=0&showTitle=0&src=NTIzaG9sbG93YXlAZ21haWwuY29t&src=ZmFtaWx5MDY1NDMwMTY1OTMyNTM4Nzc1MzlAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=dXN0Nzdpbm1obnYxOThiOWNzdDJscm9pZG9AZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%237986cb&color=%239e69af&color=%237cb342"
+      frameborder="0"
+      scrolling="no">
+    </iframe>
+  </div>
+  
   <!-- Clock -->
   <div class="box clock">
   <div id="clock"></div>
@@ -308,6 +317,7 @@ function showSlides() {
 
 </body>
 </html>
+
 
 
 
