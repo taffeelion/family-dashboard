@@ -87,6 +87,23 @@
   font-size: 16px;
   text-transform: capitalize;
 }
+  .forecast {
+  display: flex;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.forecast-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14px;
+}
+
+.forecast-day img {
+  width: 36px;
+  height: 36px;
+}
     
 .weather-row {
   display: flex;
@@ -184,7 +201,11 @@
   <div class="weather-temp" id="weather-temp"></div>
     </div>
 </div>
-
+<div class="forecast">
+  <div class="forecast-day" id="day1"></div>
+  <div class="forecast-day" id="day2"></div>
+</div>
+  
   <!-- Slideshow -->
  <div class="box slideshow-container slideshow">
   <img class="mySlides" src="images/photo1.jpg">
@@ -262,9 +283,9 @@ function showSlides() {
     if (!tempEl || !iconEl) return;
 
     try {
-      const res = await fetch(
-        `https://api.openweathermap.org/data/3.0/onecall?lat=${LAT}&lon=${LON}&units=imperial&exclude=minutely,hourly,daily,alerts&appid=${WEATHER_API_KEY}`
-      );
+     const res = await fetch(
+  `https://api.openweathermap.org/data/3.0/onecall?lat=${LAT}&lon=${LON}&units=imperial&exclude=minutely,hourly,alerts&appid=${WEATHER_API_KEY}`
+);
 
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
@@ -285,6 +306,27 @@ function showSlides() {
 
   updateWeather();
   setInterval(updateWeather, 10 * 60 * 1000);
+  
+  // --- NEXT 2 DAYS ---
+const day1 = data.daily[1];
+const day2 = data.daily[2];
+
+function formatDay(unix) {
+  return new Date(unix * 1000).toLocaleDateString([], { weekday: "short" });
+}
+
+document.getElementById("day1").innerHTML = `
+  <div>${formatDay(day1.dt)}</div>
+  <img src="https://openweathermap.org/img/wn/${day1.weather[0].icon}@2x.png">
+  <div>${Math.round(day1.temp.day)}°</div>
+`;
+
+document.getElementById("day2").innerHTML = `
+  <div>${formatDay(day2.dt)}</div>
+  <img src="https://openweathermap.org/img/wn/${day2.weather[0].icon}@2x.png">
+  <div>${Math.round(day2.temp.day)}°</div>
+`;
+
 </script>
 
 
@@ -308,6 +350,7 @@ function showSlides() {
 
 </body>
 </html>
+
 
 
 
